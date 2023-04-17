@@ -1,0 +1,140 @@
+{
+  "Blogs": [
+    {
+      "id": 1,
+      "Title": "It’s International Women’s Day, and Quantum has a long way to go",
+      "Description": "It’s getting tiring, being a woman in tech. And today, on international women’s day, I want to explain why.",
+      "UserID": 2
+    },
+    {
+      "Title": "aiute",
+      "Description": "sad",
+      "UserID": 2,
+      "id": 2
+    },
+    {
+      "Title": "b22",
+      "Description": "234324",
+      "UserID": 3,
+      "id": 3
+    },
+    {
+      "Title": "fdgsdgf",
+      "Description": "fdgfdhgdfh",
+      "UserID": 3,
+      "id": 4
+    },
+    {
+      "Title": "asdas",
+      "Description": "asdasd",
+      "UserID": 1,
+      "id": 5
+    }
+  ],
+  "Users": [
+    {
+      "FirstName": "Soham",
+      "LastName": "Patel",
+      "Email": "Soham@gmail.com",
+      "Password": "123",
+      "Role": "user",
+      "id": 1
+    },
+    {
+      "FirstName": "sadas",
+      "LastName": "asda",
+      "Email": "soham@hotmail.com",
+      "Password": "asdas",
+      "Role": "user",
+      "id": 2
+    },
+    {
+      "FirstName": "Rock",
+      "LastName": "Patel",
+      "Email": "sad@hotmail.com",
+      "Password": "sad",
+      "Role": "admin",
+      "id": 3
+    },
+    {
+      "FirstName": "Miten",
+      "LastName": "sasa",
+      "Email": "asas@fsdfsd",
+      "Password": "asas",
+      "Role": "user",
+      "id": 4
+    },
+    {
+      "FirstName": "Soham",
+      "LastName": "Patel",
+      "Email": "sad@hotmail.comsd",
+      "Password": "asdasdas",
+      "Role": "user",
+      "id": 5
+    },
+    {
+      "FirstName": "Sohamsdf",
+      "LastName": "sdf",
+      "Email": "sdfsd@gfdsdfgs",
+      "Password": "sdfsdf",
+      "Role": "user",
+      "id": 6
+    },
+    {
+      "FirstName": "Soham",
+      "LastName": "Soham",
+      "Email": "asd@asd",
+      "Password": "Sogdgsdfg",
+      "Role": "user",
+      "id": 11
+    },
+    {
+      "FirstName": "Soham",
+      "LastName": "Soham",
+      "Email": "asdas@asdfsafd",
+      "Password": "asdasda",
+      "Role": "user",
+      "id": 12
+    },
+    {
+      "FirstName": "sdfs",
+      "LastName": "sdfsd",
+      "Email": "asfdjkasdklz222@kljfklsd",
+      "Password": "fsfsdf",
+      "Role": "user",
+      "id": 16
+    },
+    {
+      "FirstName": "asd",
+      "LastName": "asd",
+      "Email": "asd@asd",
+      "Password": "asd",
+      "Role": "user",
+      "id": 17
+    },
+    {
+      "FirstName": "Soham",
+      "LastName": "asd",
+      "Email": "asdasd@asda",
+      "Password": "sdaasd",
+      "Role": "user",
+      "id": 18
+    },
+    {
+      "FirstName": "Soham",
+      "LastName": "asd",
+      "Email": "asd@zasd",
+      "Password": "asdas",
+      "Role": "user",
+      "id": 19
+    },
+    {
+      "FirstName": "asd",
+      "LastName": "asda",
+      "Email": "dasd@asda",
+      "Password": "asda",
+      "Role": "user",
+      "id": 20
+    }
+  ]
+}

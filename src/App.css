@@ -1,0 +1,32 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+#Addbtn{
+    width: 5% !important;
+}
+#form1 input{
+    width: 5% !important;
+}
+
+.table tbody tr th{
+    vertical-align: middle !important;
+    width: 10%;
+}
+
+.Forgot{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height : 50vh !important;
+    border-radius: 2%;
+    box-shadow: 1px 1px 12px rgb(55, 113, 205);
+}
+
+.Paginator-Link{
+    padding: 0.5rem;
+    color: black;
+}
+
+
