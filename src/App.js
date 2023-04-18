@@ -15,7 +15,6 @@ import Protected from "./Components/Protected";
 
 import axios from "axios";
 import ResetPassword from "./Components/ResetPassword";
-import ImageUpload from "./Components/ImageUpload";
 
 function App() {
   const [status, setStatus] = useState();
@@ -38,7 +37,7 @@ function App() {
     setRole("user");
     if ((user !== null) | (user !== undefined)) {
       axios
-        .get("http://localhost:3000/logout", {
+        .get(`${process.env.REACT_APP_SERVER_URL}/logout`, {
           withCredentials: true,
           headers : {'Authorization' :  `Bearer ${localStorage.getItem('jwt')}`}
         })
@@ -75,7 +74,7 @@ function App() {
       if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true
         const refreshToken = localStorage.getItem('refreshToken')
-        return axios.post('http://localhost:3000/token', {refreshToken: refreshToken}).then(res => {
+        return axios.post(`${process.env.REACT_APP_SERVER_URL}/token`, {refreshToken: refreshToken}).then(res => {
             if (res.status === 201) {
               console.log(res.data);
               localStorage.removeItem('jwt')
@@ -99,7 +98,7 @@ function App() {
       <Navbar status={{ status, logOut, Role1, user, isLoged }} />
       <Routes>
         <Route path="/" element={<Home user={user}/>} />
-        <Route path="/upload" element={<ImageUpload />} />
+
         <Route path="/forgotPassword" element={<EmailGetting />} />
 
         <Route path= '/reset-password/:id/:token' element={<ResetPassword />} />

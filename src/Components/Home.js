@@ -14,7 +14,8 @@ const Home = (props) => {
   const navigate = useNavigate();
                     
   useEffect(() => {
-    axios.get("http://localhost:3000/Blogs").then((response) => {
+
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/Blogs`).then((response) => {
       setState([...response["data"]]);
       setReload(false);
     });

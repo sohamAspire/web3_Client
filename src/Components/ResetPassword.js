@@ -17,7 +17,7 @@ const ResetPassword = () => {
   const { id, token } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/reset-password/${id}/${token}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/reset-password/${id}/${token}`)
       .then((res) => {
         if (res["status"] === 200) {
           setSuccess(true);
@@ -31,7 +31,7 @@ const ResetPassword = () => {
   const newPassword = (Data) => {
     if (Data.password === Data.confirmPassword) {
       axios
-        .post(`http://localhost:3000/reset-password/${id}/${token}`, {
+        .post(`${process.env.REACT_APP_SERVER_URL}/reset-password/${id}/${token}`, {
           password: Data.password,
         })
         .then((res) => {

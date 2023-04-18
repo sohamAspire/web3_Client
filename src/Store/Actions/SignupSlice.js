@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const addData = createAsyncThunk("register", async (Data) => {
   try {
-    const res = await axios.post("http://localhost:3000/Users", {...Data  ,role : 'user'});
+    const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/Users`, {...Data  ,role : 'user'});
     return res.data;
   } catch (err) {
     console.log(err);
@@ -12,7 +12,7 @@ export const addData = createAsyncThunk("register", async (Data) => {
 
 export const getUsers = createAsyncThunk("users", async (Data) => {
   try {
-    const res = await axios.get(`http://localhost:3000/Users?pageNumber=${Data.pageNumber}&posts=${Data.posts}`)
+    const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/Users?pageNumber=${Data.pageNumber}&posts=${Data.posts}`)
     return res.data;
   } catch (err) {
     console.log(err);

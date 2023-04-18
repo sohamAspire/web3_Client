@@ -33,7 +33,7 @@ const Update = (props) => {
       console.log(res);
     });
     axios
-      .patch("http://localhost:3000/Blogs/" + props.id, {
+      .patch(`${process.env.REACT_APP_SERVER_URL}/Blogs/` + props.id, {
         Title: Title,
         Description: Description,
         UserID: props.props.UserID, 

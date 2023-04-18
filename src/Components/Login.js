@@ -15,7 +15,7 @@ const Login = (props) => {
 
     const submitHandler = (e) =>{
       e.preventDefault();   
-      axios.post("http://localhost:3000/auth", { email : email , password : password} , {
+      axios.post(`${process.env.REACT_APP_SERVER_URL}/auth`, { email : email , password : password} , {
         withCredentials: true}).then((res)=> 
       { 
        if(res.data.User.length !== 0){

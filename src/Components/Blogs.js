@@ -52,7 +52,7 @@ const Blogs = (props) => {
     });
     axios
       .post(
-        "http://localhost:3000/Blogs",
+        `${process.env.REACT_APP_SERVER_URL}/Blogs`,
         {
           Title: Title,
           Description: Description,
@@ -80,7 +80,7 @@ const Blogs = (props) => {
 
   const DeleteBlog = useCallback((user) => {
     console.log(user);
-    axios.delete("http://localhost:3000/Blogs/" + user._id).then((res) => {
+    axios.delete(`${process.env.REACT_APP_SERVER_URL}/Blogs/` + user._id).then((res) => {
       if (res.status === 200) {
         const deleteRef = ref(storage, `images/${user.img}`);
         deleteObject(deleteRef).then((res)=>{
@@ -93,13 +93,13 @@ const Blogs = (props) => {
 
   useEffect(() => {
     if (props.isAdmin === "admin") {
-      axios.get("http://localhost:3000/Blogs").then((response) => {
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/Blogs`).then((response) => {
         setState([...response["data"]]);
         setLoading(false);
       });
     } else {
       axios
-        .get("http://localhost:3000/Blogs/" + props.user._id)
+        .get(`${process.env.REACT_APP_SERVER_URL}/Blogs/` + props.user._id)
         .then((response) => {
           setState([...response["data"]]);
 

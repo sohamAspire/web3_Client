@@ -17,7 +17,7 @@ const Users = () => {
     console.log("Toggle");
     if (props.Role === "admin") {
       axios
-        .put("http://localhost:3000/Users/" + id, {
+        .put(`${process.env.REACT_APP_SERVER_URL}/Users/` + id, {
           firstName: props.firstName,
           lastName: props.lastName,
           email: props.email,
@@ -29,7 +29,7 @@ const Users = () => {
         });
     } else {
       axios
-        .put("http://localhost:3000/Users/" + id, {
+        .put(`${process.env.REACT_APP_SERVER_URL}/Users/` + id, {
           firstName: props.firstName,
           lastName: props.lastName,
           email: props.email,

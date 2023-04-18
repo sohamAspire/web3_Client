@@ -15,7 +15,7 @@ const EmailGetting = () => {
   } = useForm();
 
   const resetPasswordForm = (data) => {
-    axios.post("http://localhost:3000/reset", data).then((res) => {
+    axios.post(`${process.env.REACT_APP_SERVER_URL}/reset`, data).then((res) => {
       if (res.status === 200) {
         setSuccess(true);
         setTimeout(() => {
