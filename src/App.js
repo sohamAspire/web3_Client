@@ -12,7 +12,7 @@ import Users from "./Components/Users";
 import Home from "./Components/Home";
 import Admin from "./Components/Admin";
 import Protected from "./Components/Protected";
-
+import Footer from "./Components/Footer";
 import axios from "axios";
 import ResetPassword from "./Components/ResetPassword";
 
@@ -146,6 +146,7 @@ function App() {
           />
         </Route>
       </Routes>
+      <Footer />
     </div>
   );
 }

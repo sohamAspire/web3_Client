@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ColorExtractor } from "react-color-extractor";
 import {
   MDBModalFooter,
   MDBBtn,
@@ -6,15 +7,19 @@ import {
   MDBModalDialog,
   MDBModalContent,
   MDBModalHeader,
-  MDBModalTitle,
   MDBModalBody,
 } from "mdb-react-ui-kit";
 
 const Modal = (props) => {
   const [basicModal, setBasicModal] = useState(false);
   const toggleShow = () => setBasicModal(!basicModal);
+  const colors = []
+  const [color , setColor] = useState(null)
   const Btn = () => {
     toggleShow();
+  };
+  const getColor = () => {
+    setColor(state => ({ colors: [...state.colors, ...colors] }))
   };
   return (
     <>
@@ -22,27 +27,36 @@ const Modal = (props) => {
       <MDBModal tabIndex="-1" show={basicModal} setShow={setBasicModal}>
         <MDBModalDialog centered>
           <MDBModalContent>
-            <MDBModalHeader>
-              <MDBModalTitle>Your Blog</MDBModalTitle>
+            <MDBModalHeader className="p-3">
               <MDBBtn
                 className="btn-close"
                 color="none"
                 onClick={toggleShow}
               ></MDBBtn>
             </MDBModalHeader>
-            <MDBModalBody>
+            <MDBModalBody
+              style={{
+                backgroundColor: color,
+              }}
+            >
               <div>
                 <div className="container mx-auto ">
-                  <img
-                    src={`https://firebasestorage.googleapis.com/v0/b/blogsite-381509.appspot.com/o/images%2F${props.props.img}?alt=media&token=96b1b789-e501-4346-9b09-15ad36dd0847` }
-                    alt="Img"
-                    width="100"
-                    height="100"
-                    className="img-fluid mb-2"
-                  />
+                  <ColorExtractor getColors={getColor}>
+                    <img
+                      src={`https://firebasestorage.googleapis.com/v0/b/blogsite-381509.appspot.com/o/images%2F${props.props.img}?alt=media&token=96b1b789-e501-4346-9b09-15ad36dd0847`}
+                      alt="Img"
+                      width="100"
+                      height="100"
+                      className="img-fluid mb-2"
+                    />
+                  </ColorExtractor>
                 </div>
-                <h1 className="h4 text-dark mt-2">Title: {props.props.Title}</h1>
-                <h1 className="h4 text-dark mt-2">Description: {props.props.Description}</h1>
+                <h1 className="h4 text-dark mt-2">
+                  Title: {props.props.Title}
+                </h1>
+                <h1 className="h6 text-dark mt-2">
+                  Description: {props.props.Description}
+                </h1>
               </div>
             </MDBModalBody>
             <MDBModalFooter>

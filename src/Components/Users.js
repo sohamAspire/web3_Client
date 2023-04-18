@@ -158,6 +158,12 @@ const Users = () => {
         </tbody>
       </table>
       <div className="d-flex justify-content-end">
+        <select className="browser-default custom-select w-25">
+          <option selected>Open this select menu</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="50">50</option>
+        </select>
         <Paginator
           onChangepage={paginate}
           postsPerPage={postPerPage}
