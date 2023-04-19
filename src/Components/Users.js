@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Paginator from "./Paginator";
 import { useDispatch } from "react-redux";
-import { getUsers } from "../Store/Actions/SignupSlice";
+import { getUsers , updateUser} from "../Store/Actions/SignupSlice";
 import { MDBInput } from "mdb-react-ui-kit";
 import { BarLoader } from "react-spinners";
 
@@ -13,35 +13,41 @@ const Users = () => {
   const [length, setLength] = useState(0);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const ChangeRole = (props, id) => {
-    console.log("Toggle");
-    if (props.Role === "admin") {
-      axios
-        .put(`${process.env.REACT_APP_SERVER_URL}/Users/` + id, {
-          firstName: props.firstName,
-          lastName: props.lastName,
-          email: props.email,
-          password: props.password,
-          role: "user",
-        })
-        .then((response) => {
-          setReload(!Reload);
-        });
-    } else {
-      axios
-        .put(`${process.env.REACT_APP_SERVER_URL}/Users/` + id, {
-          firstName: props.firstName,
-          lastName: props.lastName,
-          email: props.email,
-          password: props.password,
-          role: "admin",
-        })
-        .then((response) => {
-          setReload(!Reload);
-        });
-    }
-  };
+  // const ChangeRole = (props, id) => {
+  //   console.log("Toggle");
+  //   if (props.Role === "admin") {
+  //     axios
+  //       .put(`${process.env.REACT_APP_SERVER_URL}/Users/` + id, {
+  //         firstName: props.firstName,
+  //         lastName: props.lastName,
+  //         email: props.email,
+  //         password: props.password,
+  //         role: "user",
+  //       })
+  //       .then((response) => {
+  //         setReload(!Reload);
+  //       });
+  //   } else {
+  //     axios
+  //       .put(`${process.env.REACT_APP_SERVER_URL}/Users/` + id, {
+  //         firstName: props.firstName,
+  //         lastName: props.lastName,
+  //         email: props.email,
+  //         password: props.password,
+  //         role: "admin",
+  //       })
+  //       .then((response) => {
+  //         setReload(!Reload);
+  //       });
+  //   }
+  // };
 
+  const changeRole = (id , value)=>{
+    console.log(value);
+    const data = {id : id ,role : value}
+      dispatch(updateUser(data))
+    // console.log(e.target.value);
+  } 
   // Filtering
   const [filteredList, setfilteredList] = useState([]);
   const check = (e) => {
@@ -50,7 +56,7 @@ const Users = () => {
     updatedList = updatedList.filter((item) => {
       return item.firstName.toLowerCase().indexOf(input.toLowerCase()) !== -1;
     });
-    setfilteredList(updatedList);
+    setfilteredList(updatedList); 
   };
 
   const [postPerPage] = useState(5);
@@ -136,9 +142,7 @@ const Users = () => {
                     <th scope="col">
                       <select
                         className="select border rounded bg-primary text-light"
-                        onChange={() => {
-                          ChangeRole(elem, elem._id);
-                        }}
+                        onChange={(e)=>changeRole(elem._id , e.target.value)}
                         defaultValue={elem.role}
                       >
                         <option value="user">User</option>
@@ -158,12 +162,12 @@ const Users = () => {
         </tbody>
       </table>
       <div className="d-flex justify-content-end">
-        <select className="browser-default custom-select w-25">
+        {/* <select className="browser-default custom-select">
           <option selected>Open this select menu</option>
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="50">50</option>
-        </select>
+        </select> */}
         <Paginator
           onChangepage={paginate}
           postsPerPage={postPerPage}

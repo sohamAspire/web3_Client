@@ -9,7 +9,7 @@ const Admin = () => {
       <div className="col-lg-3 col-md-4 col-sm-4 container-fluid p-0 m-0 m-4">
         <MDBListGroup sticky="true">
           <MDBRipple rippleTag="span">
-            <NavLink to="/admin/blogs" exact={true} className="text-light">
+            <NavLink to="/admin/blogs" className="text-light">
               <MDBListGroupItem
                 action
                 className="border-0 border-bottom rounded rounded bg-primary text-light"

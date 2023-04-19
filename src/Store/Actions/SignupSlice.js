@@ -19,6 +19,16 @@ export const getUsers = createAsyncThunk("users", async (Data) => {
   }
 });
 
+export const updateUser = createAsyncThunk("updateUser", async (data) => {
+  try {
+    const res = await axios.patch(`${process.env.REACT_APP_SERVER_URL}/Users/${data.id}` , {role : data.role})
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
 export const SignupSlice = createSlice({
   name: "Signup",
   initialState: {
