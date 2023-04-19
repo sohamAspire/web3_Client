@@ -28,6 +28,15 @@ export const updateUser = createAsyncThunk("updateUser", async (data) => {
   }
 });
 
+export const searchApi = createAsyncThunk("searchApi", async (data) => {
+  try {
+    console.log(data);
+    const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/search?value=${data.search}&pageNumber=${data.pageNumber}&posts=${data.posts}`)
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 export const SignupSlice = createSlice({
   name: "Signup",

@@ -1,62 +1,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Paginator from "./Paginator";
 import { useDispatch } from "react-redux";
-import { getUsers , updateUser} from "../Store/Actions/SignupSlice";
+import { getUsers , updateUser , searchApi} from "../Store/Actions/SignupSlice";
 import { MDBInput } from "mdb-react-ui-kit";
 import { BarLoader } from "react-spinners";
 
 const Users = () => {
-  const [Reload, setReload] = useState(false);
+  const [Reload, setReload] = useState(true);
   const [state, setState] = useState([]);
   const [length, setLength] = useState(0);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  // const ChangeRole = (props, id) => {
-  //   console.log("Toggle");
-  //   if (props.Role === "admin") {
-  //     axios
-  //       .put(`${process.env.REACT_APP_SERVER_URL}/Users/` + id, {
-  //         firstName: props.firstName,
-  //         lastName: props.lastName,
-  //         email: props.email,
-  //         password: props.password,
-  //         role: "user",
-  //       })
-  //       .then((response) => {
-  //         setReload(!Reload);
-  //       });
-  //   } else {
-  //     axios
-  //       .put(`${process.env.REACT_APP_SERVER_URL}/Users/` + id, {
-  //         firstName: props.firstName,
-  //         lastName: props.lastName,
-  //         email: props.email,
-  //         password: props.password,
-  //         role: "admin",
-  //       })
-  //       .then((response) => {
-  //         setReload(!Reload);
-  //       });
-  //   }
-  // };
 
   const changeRole = (id , value)=>{
     console.log(value);
     const data = {id : id ,role : value}
-      dispatch(updateUser(data))
-    // console.log(e.target.value);
+      dispatch(updateUser(data)).then((res)=>{
+        setReload(!Reload)
+      })
   } 
   // Filtering
+
   const [filteredList, setfilteredList] = useState([]);
   const check = (e) => {
-    var input = e.target.value;
-    let updatedList = [...state];
-    updatedList = updatedList.filter((item) => {
-      return item.firstName.toLowerCase().indexOf(input.toLowerCase()) !== -1;
-    });
-    setfilteredList(updatedList); 
+      const data = {search : e.target.value , pageNumber: 1, posts: postPerPage }
+      dispatch(searchApi(data)).then((res)=>{
+        setState([...res.payload]);
+      })
+      setfilteredList(state); 
   };
 
   const [postPerPage] = useState(5);
@@ -87,14 +59,7 @@ const Users = () => {
         setLength(res.payload.len);
       }
     );
-    // axios.get("http://localhost:3000/Users").then((response) => {
-    // console.log(response['data']);
-    //   console.log(response["data"]);
-    //   setState([...response["data"]]);
-    //   setLoading(false);
-    //   setfilteredList([...response["data"]]);
-    // });
-  }, []);
+  }, [Reload]);
 
   return (
     <div className="container p-0 mt-2">
@@ -162,12 +127,6 @@ const Users = () => {
         </tbody>
       </table>
       <div className="d-flex justify-content-end">
-        {/* <select className="browser-default custom-select">
-          <option selected>Open this select menu</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="50">50</option>
-        </select> */}
         <Paginator
           onChangepage={paginate}
           postsPerPage={postPerPage}
